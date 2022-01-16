@@ -1,7 +1,9 @@
-package com.project;
+package com.project.Controllers;
 
 import java.util.List;
 
+import com.project.Entity.Post;
+import com.project.Repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	
 	@Autowired
-	PostRepository postRepo;
+    PostRepository postRepo;
 	
 	@RequestMapping("")
 	public String viewHomePage(ModelMap allPosts) {
