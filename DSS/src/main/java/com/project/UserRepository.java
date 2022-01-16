@@ -1,6 +1,5 @@
-package com.project.Repository;
+package com.project;
 
-import com.project.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
