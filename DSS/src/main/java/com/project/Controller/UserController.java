@@ -1,7 +1,12 @@
-package com.project;
+package com.project.Controller;
 
 import java.util.List;
 
+import com.project.Entity.Post;
+import com.project.Entity.User;
+import com.project.Repository.PostRepository;
+import com.project.Repository.UserRepository;
+import com.project.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

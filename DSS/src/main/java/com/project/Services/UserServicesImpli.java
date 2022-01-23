@@ -1,5 +1,8 @@
-package com.project;
+package com.project.Services;
 
+import com.project.Entity.User;
+import com.project.Repository.UserRepository;
+import com.project.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

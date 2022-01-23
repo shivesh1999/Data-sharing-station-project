@@ -1,8 +1,13 @@
-package com.project;
+package com.project.Controller;
 
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.project.Entity.Post;
+import com.project.Repository.PostRepository;
+import com.project.Entity.User;
+import com.project.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
