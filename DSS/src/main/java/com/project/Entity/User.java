@@ -84,6 +84,13 @@ public class User implements UserDetails {
 		return enabled;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public User(long id,String firstname, String lastname, String email, String contact, String password) {
 		this.id=id;

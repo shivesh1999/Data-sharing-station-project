@@ -1,14 +1,15 @@
 package com.project.Controller;
 
-import com.project.Entity.User;
-import com.project.Entity.UserRole;
+
 import com.project.Repository.UserRepository;
 import com.project.Services.SequenceGeneratorService;
+import com.project.Services.UserRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+
+@Controller
 public class HomeController {
 
     @Autowired
@@ -16,11 +17,23 @@ public class HomeController {
 
     @Autowired
     SequenceGeneratorService sequenceGeneratorService;
+    
+    @Autowired
+    private UserRegistrationService registrationService;
 
     @GetMapping("")
     public String getHomePage(){
-        userRepo.save(new User(sequenceGeneratorService.generateSequence(User.SEQUENCE_NAME),"shivesh","safal","shiveshsafal102@gmail.com","7761897475","password"));
-
-        return "Hi";
+        return "home";
     }
+
+    @GetMapping("/signup")
+    public String getSignUpPage(){ return "signup";}
+
+    @GetMapping("/login")
+    public String getLogInPage(){ return "login";}
+
+    
+
+
+
 }

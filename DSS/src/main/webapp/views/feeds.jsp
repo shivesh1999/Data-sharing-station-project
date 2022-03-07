@@ -6,31 +6,37 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome User</title>
-	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.6.0/css/bootstrap.min.css">
-	<script type="text/javascript" src="/webjars/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<title>DSS-Feeds</title>
 </head>
 <body>
-<br>
-<div class="container">
-	<h4>Feeds</h4>
-	<a href="/createPost/${currentUser.userId}"><button type="button" class="btn btn-secondary">Create a Post</button></a>
-	<a href="/profile/${currentUser.userId}"><button class="btn btn-secondary">My Profile</button></a>
-	<a href="/loginPage"><button class="btn btn-warning">Logout</button></a>
-</div>
-<br>
-<c:forEach items="${posts}" var="post">
-<div class="container">
-  <div class="card" style="width: 25rem;">
-   <div class="card-body">
-    <h5 class="card-title">${post.postTopic}</h5>
-	<h6 class="card-text">by : ${post.userName}</h6>
-    <p class="card-text">Check the preview and Download your PDF</p>
-    <a href="/downloadPreview/${post.postId}" class="btn btn-primary">Check preview</a>
-    <a href="/download/${post.postId}" class="btn btn-primary">Download</a>
-   </div>
-  </div>
-</div>
-</c:forEach>
+    <nav>
+        <h3 style="display: inline-block;">DSS</h3>
+    </nav>
+    <div style="margin-left: auto;">
+        <div>
+            <h4>Data Sharing Station</h4>
+        </div>
+        <h3>Feeds</h3>
+        <form action="/createPost/${user.email}" method="post" enctype="multipart/form-data">
+            <div>
+                <p >What on your mind ${user.firstname} ? Share it here ! </p><br>
+                <label for="Description">Description: </label><br><br>
+                <input type="Description" id="Description" name="Description" required><br><br>
+                <label for="File">Upload your PDF: </label><br><br>
+			    <input type="file" class="form-control" name="File"><br><br>
+                <button type="submit">Post</button><br><br>
+            </div>
+        </form>
+    </div>
+    <div>
+    <br>
+    <c:forEach items="${posts}" var="post">
+        <div>
+            <h5>Description : ${post.description}</h5>
+            <h6>by : ${post.postedBy}</h6>
+            <a href="/download/${post.id}">Download</a>
+        </div>
+    </c:forEach>
+    </div>
 </body>
 </html>
