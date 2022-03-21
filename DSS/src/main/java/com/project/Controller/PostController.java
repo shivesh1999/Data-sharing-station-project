@@ -68,4 +68,23 @@ public class PostController {
 		response.setHeader("Content-Disposition","attachment;filename=file.pdf");
 		return OutputStream->{ OutputStream.write(data.getData());};
 	}
+
+	@GetMapping("/delete/{userEmail}/{postId}")
+	public String createPost(
+							 @PathVariable("userEmail") String id,
+							 @PathVariable("postId") long postId,
+							 ModelMap allPosts,
+							 ModelMap model,
+							 ModelMap msg)
+	{
+
+		User user=commonService.getUser(id);
+		model.addAttribute("user",user);
+		List<Post> posts =postService.getPosts(user.getId());
+		allPosts.addAttribute("posts", posts);
+		msg.addAttribute("msg","Post deleted successfully");
+		postRepo.deleteById(postId);
+		return "profile";
+	}
+
 }

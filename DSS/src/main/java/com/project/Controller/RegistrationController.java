@@ -24,7 +24,7 @@ public class RegistrationController {
 	@Autowired
     SequenceGeneratorService sequenceGenerator;
 
-	  @GetMapping(value= "/register")
+	  @PostMapping(value= "/register")
 	  public String registerUser(UserRegistrationRequest request) {
 		  User user=new User(sequenceGenerator.generateSequence(User.SEQUENCE_NAME),
 				  request.getFirstname(),

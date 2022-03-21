@@ -10,6 +10,7 @@ import org.bson.types.Binary;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @NoArgsConstructor
 @Entity
@@ -21,8 +22,9 @@ public class Post {
 
 	@Id
 	private Long id;
-	
+
 	private Long userId;
+	@Field
 	private String Description;
 	private String postedBy;
 	private LocalDateTime time;

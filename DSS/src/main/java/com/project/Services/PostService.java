@@ -2,6 +2,7 @@ package com.project.Services;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
@@ -29,4 +30,8 @@ public class PostService {
 		postRepository.save(new Post(sequenceGenerator.generateSequence(User.SEQUENCE_NAME),user.getId(), description, user.getFirstname(), time.now(), new Binary(BsonBinarySubType.BINARY, fileInByte)));
 	}
 
+    public ArrayList<Post> getPosts(Long id) {
+		ArrayList<Post> posts=postRepository.findAllByUserId(id);
+		return posts;
+    }
 }

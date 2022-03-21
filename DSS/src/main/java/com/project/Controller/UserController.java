@@ -1,24 +1,18 @@
 package com.project.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.project.Entity.Post;
 import com.project.Repository.PostRepository;
+import com.project.Services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.project.Entity.User;
 import com.project.Services.CommonService;
-import com.project.Services.UserService;
 
 @Controller
 public class UserController {
@@ -27,6 +21,8 @@ public class UserController {
 	private CommonService userService;
 	@Autowired
 	private PostRepository postRepo;
+	@Autowired
+	private PostService postService;
 	
 	@PostMapping("/feeds")
 	public String getFeedsPage(@RequestParam("email") String email,
@@ -43,7 +39,6 @@ public class UserController {
 		{
 		if((user.getPassword()).equals(password)){
 			List<Post> posts =postRepo.findAll();
-			System.out.println(posts);
 			if(posts.size()>0) {
 				allPosts.addAttribute("posts", posts);
 			}
@@ -59,5 +54,37 @@ public class UserController {
 		}
 		}
 	}
+	@GetMapping("/feeds/{email}")
+	public String getFeeds(@PathVariable("email") String email,
+							   ModelMap model,
+							   ModelMap allPosts)
+	{
+		User user = userService.getUser(email);
+		model.addAttribute("user",user);
+		List<Post> posts=postRepo.findAll();
+		allPosts.addAttribute("posts", posts);
+		return "feeds";
+	}
+
+	@GetMapping("/profile/{email}")
+	public String getFeedsPage(@PathVariable("email") String email,
+							   ModelMap model,
+							   ModelMap allPosts,
+							   ModelMap msg)
+	{
+		User user = userService.getUser(email);
+
+		model.addAttribute("user",user);
+		ArrayList<Post> posts=postService.getPosts(user.getId());
+		if(posts.size()>0){
+		allPosts.addAttribute("posts", posts);
+		return "profile";
+		}
+		else{
+			model.addAttribute("msg","You have no posts yet.");
+			return "profile";
+		}
+	}
+
 
 }

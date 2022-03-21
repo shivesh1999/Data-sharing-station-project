@@ -40,8 +40,12 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">About us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/feeds/${user.email}">Feeds</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">For Institutions</a>
@@ -49,6 +53,7 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/home">Logout</a>
               </li>
+
             </ul>
         </div>
     </div>
@@ -59,9 +64,9 @@
       <div class="col-3">
         <h6>Welcome back ${user.firstname} !</h6>
         <br>
-        <a href="/profile/${user.email}"><h6>My profile</h6></a>
+        <h6>Email : ${user.email}</h6>
         <br>
-        <h6>My subscription</h6>
+        <h6>Contact : ${user.contact}</h6>
       </div>
       <div class="col-6">
         <div class="mb-3" id="createGrid">
@@ -77,7 +82,7 @@
                 <button type="submit" class="btn btn-light">Publish</button>
             </form>
         </div>
-        <div class="mb-3" id="Posts">
+        <div class="mb-3">
                 <h6>${msg}</h6>
         </div>
         <c:forEach items="${posts}" var="post">
@@ -88,12 +93,13 @@
             <h6>${post.description}</h6>
             <h6>Download resource and know more about it.</h6>
             <a href="/download/${post.id}"><button class="btn btn-warning">Download</button></a><br><br>
+            <a href="/delete/${user.email}/${post.id}"><button type="button" class="btn btn-danger">Delete Post</button></a><br><br>
         </div>
         <br>
         </c:forEach>
        </div>
         <div class="col-3">
-            Recommended resources
+            Recommended Resources
         </div>
     </div>
   </div>
