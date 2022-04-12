@@ -27,7 +27,11 @@ public class UserController {
 	@PostMapping("/feeds")
 	public String getFeedsPage(@RequestParam("email") String email,
 							   @RequestParam("password") String password,
-							   ModelMap model,ModelMap allPosts,ModelMap msg)
+							   ModelMap model,
+							   ModelMap allPosts,
+							   ModelMap unsubscribedResources,
+							   ModelMap subscribedResources,
+							   ModelMap msg)
 	{
 		User user = userService.getUser(email);
 		if(user==null)
@@ -39,6 +43,10 @@ public class UserController {
 		{
 		if((user.getPassword()).equals(password)){
 			List<Post> posts =postRepo.findAll();
+			Iterable<User> subscribedResourcesDetails=userService.getSubscribedResourcesDetails(user);
+			subscribedResources.addAttribute("subscribedResources", subscribedResourcesDetails);
+			List<User> Resources=userService.getTopResources();
+			unsubscribedResources.addAttribute("unsubscribedResources", Resources);
 			if(posts.size()>0) {
 				allPosts.addAttribute("posts", posts);
 			}
@@ -57,10 +65,13 @@ public class UserController {
 	@GetMapping("/feeds/{email}")
 	public String getFeeds(@PathVariable("email") String email,
 							   ModelMap model,
-							   ModelMap allPosts)
+							   ModelMap allPosts,
+						   ModelMap unsubscribedResources)
 	{
 		User user = userService.getUser(email);
 		model.addAttribute("user",user);
+		List<User> Resources=userService.getTopResources();
+		unsubscribedResources.addAttribute("unsubscribedResources", Resources);
 		List<Post> posts=postRepo.findAll();
 		allPosts.addAttribute("posts", posts);
 		return "feeds";
@@ -73,7 +84,6 @@ public class UserController {
 							   ModelMap msg)
 	{
 		User user = userService.getUser(email);
-
 		model.addAttribute("user",user);
 		ArrayList<Post> posts=postService.getPosts(user.getId());
 		if(posts.size()>0){
@@ -83,6 +93,25 @@ public class UserController {
 		else{
 			model.addAttribute("msg","You have no posts yet.");
 			return "profile";
+		}
+	}
+
+	@GetMapping("/profile-view/{email}")
+	public String getViewProfilePage(@PathVariable("email") String email,
+							   ModelMap model,
+							   ModelMap allPosts,
+							   ModelMap msg)
+	{
+		User user = userService.getUser(email);
+		model.addAttribute("user",user);
+		ArrayList<Post> posts=postService.getPosts(user.getId());
+		if(posts.size()>0){
+			allPosts.addAttribute("posts", posts);
+			return "viewProfile";
+		}
+		else{
+			model.addAttribute("msg","You have no posts yet.");
+			return "viewProfile";
 		}
 	}
 

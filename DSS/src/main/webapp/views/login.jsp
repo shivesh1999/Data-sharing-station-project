@@ -31,18 +31,18 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">About us</a>
+                <a class="nav-link active" aria-current="page" href="signup">Create a Account</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">For Institutions</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="signup">Create a Account</a>
+                <a class="nav-link active" aria-current="page" href="#">About us</a>
               </li>
             </ul>
         </div>
@@ -67,7 +67,7 @@
               <label class="form-check-label" for="rememberme">Remember me</label>
             </div>
             <div class="mb-3">
-                <h6>${msg}</h6>
+                <h6 style="color:yellow;">${msg}</h6>
             </div>
             <button type="submit" class="btn btn-light">Submit</button>
           </form>

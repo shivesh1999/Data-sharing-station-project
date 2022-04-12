@@ -41,6 +41,9 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0"> 
               <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/feeds/${user.email}">Feeds</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">For Institutions</a>
               </li>
               <li class="nav-item">
@@ -58,29 +61,16 @@
 <div class="container-fluid">
     <div class="row">
       <div class="col-3">
-        <h6>Hello ${user.firstname} !</h6>
+        <h6>${user.firstname} ${user.lastname}</h6>
         <br>
         <h6>Email - ${user.email}</h6>
         <h6>Contact - ${user.contact}</h6>
         <h6>Resources published - X</h6>
         <h6>Subsribers - X</h6>
         <h6>Subscriptions - X</h6>
-        <h6>
+        
       </div>
       <div class="col-6">
-      <div class="mb-3" id="createGrid">
-            <form action="/createPost/${user.email}" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="Description" class="form-label">Description</label>
-                    <textarea class="form-control" id="Description" rows="3" placeholder="What on your mind ? Share it here ! " name="Description" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="File" class="form-label">Add your file</label>
-                    <input class="form-control" type="file" id="File" name="File" required>
-                </div>
-                <button type="submit" class="btn btn-light">Publish</button>
-            </form>
-        </div>
         <div class="mb-3">
                 <h6 style="color:yellow;">${msg}</h6>
         </div>
@@ -92,7 +82,6 @@
             <h6>Download resource and know more about it.</h6>
             <span style="display: inline;">
             <a href="/download/${post.id}"><button class="btn btn-warning">Download</button></a>
-            <a href="/delete/${user.email}/${post.id}"><button type="button" class="btn btn-danger">Delete Post</button></a>
             </span>
             <br><br>
         </div>
@@ -100,7 +89,6 @@
         </c:forEach>
        </div>
         <div class="col-3">
-          
         </div>
     </div>
   </div>

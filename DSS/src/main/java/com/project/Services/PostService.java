@@ -27,7 +27,7 @@ public class PostService {
 	public void createPost(User user, String description, MultipartFile file) throws IOException
 	{
 		byte[] fileInByte = file.getBytes();
-		postRepository.save(new Post(sequenceGenerator.generateSequence(User.SEQUENCE_NAME),user.getId(), description, user.getFirstname(), time.now(), new Binary(BsonBinarySubType.BINARY, fileInByte)));
+		postRepository.save(new Post(sequenceGenerator.generateSequence(User.SEQUENCE_NAME),user.getId(), description, user.getFirstname()+user.getLastname(), time.now(), new Binary(BsonBinarySubType.BINARY, fileInByte)));
 	}
 
     public ArrayList<Post> getPosts(Long id) {

@@ -2,27 +2,26 @@ package com.project.Services;
 
 import com.project.Entity.User;
 import com.project.Repository.UserRepository;
-import lombok.AllArgsConstructor;
-
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.support.Repositories;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-
 @Service
-@AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-	@Autowired
-	UserRepository repo;
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return null;
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user=userRepository.findByEmail(username);
+        if(user==null){
+            throw new UsernameNotFoundException("Username is incorrect");
+        }
+        else{
+            return user;
+        }
     }
-
 }

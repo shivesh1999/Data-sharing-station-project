@@ -19,22 +19,22 @@
 </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light text-right">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">DSS</a>
+          <a class="navbar-brand" href="home">DSS</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">About us</a>
+                <a class="nav-link active"  aria-current="page" href="signup">Create a Account</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">For Institutions</a>
-              </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="signup">Create a Account</a>
+                <a class="nav-link active" aria-current="page" href="#">About us</a>
               </li>
             </ul>
         </div>
@@ -46,8 +46,16 @@
     <p>
         A multipurpose storage platform.
     </p>
-    <a href="login"><button class="btn btn-light" style="display: inline-block;">Log in</button></a>
-    <a href="signup"><button class="btn btn-light" style="display: inline-block;">Sign Up</button></a>
+    <br>
+    <h4>Why DSS ?</h4>
+            <ul class="mb-3">
+                <li class="mb-3">The largest and best collection of online resources guaranteed.</li>
+                <li class="mb-3">Personalized Experience of resources</li>
+                <li class="mb-3">Access to private post from your favourite resource provider.</li>
+            </ul>
+    <br>
+    <a href="login"><button class="btn btn-outline-light" style="display: inline-block;">Log in</button></a>
+    <a href="signup"><button class="btn btn-outline-light" style="display: inline-block;">Sign Up</button></a>
 </div>
 
 </body>

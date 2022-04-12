@@ -39,12 +39,12 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">About us</a>
-              </li>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">For Institutions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">About us</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/home">Logout</a>
@@ -58,10 +58,9 @@
     <div class="row">
       <div class="col-3">
         <h6>Welcome back ${user.firstname} !</h6>
-        <br>
         <a href="/profile/${user.email}"><h6>My profile</h6></a>
         <br>
-        <h6>My subscription</h6>
+        <h6>My Subscription</h6>
       </div>
       <div class="col-6">
         <div class="mb-3" id="createGrid">
@@ -77,14 +76,13 @@
                 <button type="submit" class="btn btn-light">Publish</button>
             </form>
         </div>
-        <div class="mb-3" id="Posts">
-                <h6>${msg}</h6>
+        <div class="mb-3">
+                <h6 style="color:yellow;">${msg}</h6>
         </div>
         <c:forEach items="${posts}" var="post">
         <div class="container-fluid" id="Posts">
             <br>
-            <h5>${post.postedBy}</h5>
-            <h6>Shared about :</h6>
+            <h6>${post.postedBy} shared about </h6>
             <h6>${post.description}</h6>
             <h6>Download resource and know more about it.</h6>
             <a href="/download/${post.id}"><button class="btn btn-warning">Download</button></a><br><br>
@@ -94,6 +92,12 @@
        </div>
         <div class="col-3">
             Recommended resources
+            <br>
+            <c:forEach items="${unsubscribedResources}" var="resources">
+            <div>
+            <a href="/profile-view/${resources.email}">${resources.firstname} ${resources.lastname}</a>
+            </div>
+            </c:forEach>
         </div>
     </div>
   </div>

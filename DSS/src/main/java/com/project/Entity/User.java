@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -35,12 +36,22 @@ public class User implements UserDetails {
 	private UserRole userRole;
 	private boolean locked=false;
 	private boolean enabled=true;
+	private ArrayList<Long> subscribers=new ArrayList<Long>();
+	private ArrayList<Long> resources=new ArrayList<Long>();
 
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		SimpleGrantedAuthority authority=new SimpleGrantedAuthority(userRole.name());
 		return Collections.singletonList(authority);
+	}
+
+	public UserRole getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
 
 	@Override
@@ -92,7 +103,23 @@ public class User implements UserDetails {
 		this.id = id;
 	}
 
-	public User(long id,String firstname, String lastname, String email, String contact, String password) {
+	public ArrayList<Long> getSubscribers() {
+		return subscribers;
+	}
+
+	public void setSubscribers(ArrayList<Long> subscribers) {
+		this.subscribers = subscribers;
+	}
+
+	public ArrayList<Long> getResources() {
+		return resources;
+	}
+
+	public void setResources(ArrayList<Long> resources) {
+		this.resources = resources;
+	}
+
+	public User(long id, String firstname, String lastname, String email, String contact, String password) {
 		this.id=id;
 		this.firstname = firstname;
 		this.lastname = lastname;
