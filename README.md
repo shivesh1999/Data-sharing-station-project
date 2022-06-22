@@ -1,2 +1,3 @@
 # Data-sharing-station-project
-Data Sharing Web Application using Spring Boot
+This project is a java based web application which provides a common and secure space to share documents within an organization.
+
